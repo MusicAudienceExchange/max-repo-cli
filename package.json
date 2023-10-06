@@ -1,0 +1,9 @@
+{
+  "name": "@max/repo-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:MusicAudienceExchange/max-repo-cli.git",
+  "author": "Music Audience Exchange, Inc.",
+  "license": "UNLICENSED",
+  "bin": "./cli.sh"
+}
