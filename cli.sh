@@ -21,7 +21,7 @@ checkout_repo() {
     echo "Checking out ${dir_name}"
     git clone -b "$target_branch" "$url" "${dir_name}"
   else
-    if [ ! -d "${dir_name}/.git"]; then
+    if [ ! -d "${dir_name}/.git" ]; then
       echo "INFO: ${dir_name} does not appear to be a git repo; skipping"
       return
     fi
