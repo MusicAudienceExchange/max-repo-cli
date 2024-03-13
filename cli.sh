@@ -3,7 +3,9 @@
 NPMRC=".npmrc"
 
 gh_token() {
-  if [ -e "$NPMRC" ]; then
+  if [ -n "${GH_PAT}" ]; then
+    echo "$GH_PAT"
+  elif [ -e "$NPMRC" ]; then
     tok=$(grep -Eo 'ghp_.*$' "$NPMRC")
     echo "$tok"
   fi
