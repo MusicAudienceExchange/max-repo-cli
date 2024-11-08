@@ -52,6 +52,9 @@ run() {
     checkout_repo "email-templates" "${npm_package_config_max_email_templates}" "email-templates"
   fi
 
+  if [ ! -z "${npm_package_config_max_melodies_source}" ]; then
+    checkout_repo "melodies-source" "${npm_package_config_max_melodies_source}" "src/melodies-source"
+  fi
 }
 
 run
