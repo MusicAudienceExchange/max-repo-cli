@@ -53,11 +53,8 @@ run() {
   fi
 
   if [ ! -z "${npm_package_config_max_melodies_source}" ]; then
-    if [ ! -z "${npm_package_config_max_melodies_source_path}" ]; then
-      checkout_repo "melodies-source" "${npm_package_config_max_melodies_source}" "${npm_package_config_max_melodies_source_path}"
-    else
-      checkout_repo "melodies-source" "${npm_package_config_max_melodies_source}" "src/melodies-source"
-    fi
+    local melodies_checkout_path="${npm_package_config_max_melodies_source_path:-src/melodies-source}"
+    checkout_repo "melodies-source" "${npm_package_config_max_melodies_source}" "${melodies_checkout_path}"
   fi
 }
 
