@@ -45,7 +45,8 @@ checkout_repo() {
 
 run() {
   if [ ! -z "${npm_package_config_max_common}" ]; then
-    checkout_repo "set-common" "${npm_package_config_max_common}" "common"
+    local common_checkout_path="${npm_package_config_max_common_path:-common}"
+    checkout_repo "set-common" "${npm_package_config_max_common}" "${common_checkout_path}"
   fi
 
   if [ ! -z "${npm_package_config_max_email_templates}" ]; then
@@ -53,7 +54,8 @@ run() {
   fi
 
   if [ ! -z "${npm_package_config_max_melodies_source}" ]; then
-    checkout_repo "melodies-source" "${npm_package_config_max_melodies_source}" "src/melodies-source"
+    local melodies_checkout_path="${npm_package_config_max_melodies_source_path:-src/melodies-source}"
+    checkout_repo "melodies-source" "${npm_package_config_max_melodies_source}" "${melodies_checkout_path}"
   fi
 }
 
