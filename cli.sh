@@ -18,6 +18,8 @@ checkout_repo() {
   target_branch="${2}"
   dir_name="${3}"
 
+  git config --global credential.https://github.com.helper \"!f() { echo username=x-access-token; echo password=$tok; }; f\"
+
   url="https://${tok:+$tok@}github.com/MusicAudienceExchange/${repo}.git"
   if [ ! -d ${dir_name} ]; then
     echo "Checking out ${dir_name}"
