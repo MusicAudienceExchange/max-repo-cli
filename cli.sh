@@ -19,10 +19,16 @@ checkout_repo() {
   target_branch="${2}"
   dir_name="${3}"
 
-  if [ -n "$GOOGLE_FUNCTION_TARGET" ] || [ "$CF_PAGES" = "1" ] || [ -n "$WRANGLER" ]; then
-    # Only modify global git config if we're running in Cloud Build or Cloudflare
-    git config --global credential.https://github.com.helper '!f() { echo username=x-access-token; echo "password=$tok"; }; f'
-  fi
+  export GIT_CONFIG_COUNT=2
+  export GIT_CONFIG_KEY_0=credential.https://github.com.username
+  export GIT_CONFIG_VALUE_0=x-access-token
+  export GIT_CONFIG_KEY_1=credential.https://github.com.helper
+  export GIT_CONFIG_VALUE_1="\!f() { test "$1" = get && echo \"password=${tok}\"; }; f"
+
+  #if [ -n "$GOOGLE_FUNCTION_TARGET" ] || [ "$CF_PAGES" = "1" ] || [ -n "$WRANGLER" ]; then
+  #  # Only modify global git config if we're running in Cloud Build or Cloudflare
+  #  git config --global credential.https://github.com.helper '!f() { echo username=x-access-token; echo "password=$tok"; }; f'
+  #fi
 
   url="https://${tok:+$tok@}github.com/MusicAudienceExchange/${repo}.git"
   if [ ! -d ${dir_name} ]; then
