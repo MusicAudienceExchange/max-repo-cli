@@ -19,6 +19,11 @@ checkout_repo() {
   target_branch="${2}"
   dir_name="${3}"
 
+  echo "Checking build environment variables:"
+  echo "BUILD_ID: '$BUILD_ID'"
+  echo "CF_PAGES: '$CF_PAGES'"
+  echo "WRANGLER: '$WRANGLER'"
+
   if [ -n "$BUILD_ID" ] || [ "$CF_PAGES" = "1" ] || [ -n "$WRANGLER" ]; then
     # Only modify global git config if we're running in Cloud Build or Cloudflare
     git config --global credential.https://github.com.helper '!f() { echo username=x-access-token; echo "password=$tok"; }; f'
