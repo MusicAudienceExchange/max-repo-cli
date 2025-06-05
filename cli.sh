@@ -13,6 +13,7 @@ gh_token() {
 
 checkout_repo() {
   tok=$(gh_token)
+  export tok
 
   repo="${1}"
   target_branch="${2}"
