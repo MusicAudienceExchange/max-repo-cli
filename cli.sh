@@ -23,6 +23,9 @@ checkout_repo() {
   echo "BUILD_ID: '$BUILD_ID'"
   echo "CF_PAGES: '$CF_PAGES'"
   echo "WRANGLER: '$WRANGLER'"
+  echo "--- Full environment ---"
+  env
+  echo "------------------------"
 
   if [ -n "$BUILD_ID" ] || [ "$CF_PAGES" = "1" ] || [ -n "$WRANGLER" ]; then
     # Only modify global git config if we're running in Cloud Build or Cloudflare
