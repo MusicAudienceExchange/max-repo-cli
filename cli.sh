@@ -23,7 +23,7 @@ checkout_repo() {
   export GIT_CONFIG_KEY_0=credential.https://github.com.username
   export GIT_CONFIG_VALUE_0=x-access-token
   export GIT_CONFIG_KEY_1=credential.https://github.com.helper
-  export GIT_CONFIG_VALUE_1="\!f() { test "$1" = get && echo \"password=${tok}\"; }; f"
+  export GIT_CONFIG_VALUE_1="!f() { test \"$1\" = get && echo \"password=${tok}\"; }; f"
 
   #if [ -n "$GOOGLE_FUNCTION_TARGET" ] || [ "$CF_PAGES" = "1" ] || [ -n "$WRANGLER" ]; then
   #  # Only modify global git config if we're running in Cloud Build or Cloudflare
