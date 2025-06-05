@@ -18,7 +18,11 @@ checkout_repo() {
   target_branch="${2}"
   dir_name="${3}"
 
-  url="https://${tok:+$tok@}github.com/MusicAudienceExchange/${repo}.git"
+  export GIT_CONFIG_COUNT=1
+  export GIT_CONFIG_KEY_0=credential.https://github.com.helper
+  export GIT_CONFIG_VALUE_0="!f() { echo username=x-access-token; echo \"password=$tok\"; }; f"
+
+  url="https://github.com/MusicAudienceExchange/${repo}.git"
   if [ ! -d ${dir_name} ]; then
     echo "Checking out ${dir_name}"
     git clone -b "$target_branch" "$url" "${dir_name}"
