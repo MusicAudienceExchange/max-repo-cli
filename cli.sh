@@ -57,7 +57,8 @@ run() {
   fi
 
   if [ ! -z "${npm_package_config_max_email_templates}" ]; then
-    checkout_repo "email-templates" "${npm_package_config_max_email_templates}" "email-templates"
+    local email_templates_checkout_path="${npm_package_config_max_email_templates_path:-email-templates}"
+    checkout_repo "email-templates" "${npm_package_config_max_email_templates}" "${email_templates_checkout_path}"
   fi
 
   if [ ! -z "${npm_package_config_max_melodies_source}" ]; then
